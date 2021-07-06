@@ -53,3 +53,17 @@ module.exports  = {
             throw error
         }
     },
+    user: async (_, args) => {
+        const id = args.id;        
+        if(!id){
+            throw new Error('Invalid request submitted');
+        }else{
+            const user2 = await User.findById(id).exec();
+
+            if(!user2){
+                throw new Error('Invalid request submitted');
+            }
+            
+            return user2;
+        }
+    },
