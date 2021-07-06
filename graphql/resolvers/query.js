@@ -67,3 +67,24 @@ module.exports  = {
             return user2;
         }
     },
+    vehicles: async () => {
+        try{
+            const vehicles2 = await Vehicle.find();
+            return vehicles2.map(_vehicle => ({
+                ..._vehicle._doc,
+                /*user: async () => {
+                    const user2 = await User.findById( _vehicle._doc.user);        
+                    return {
+                        ...user2._doc,
+                        vehicles: vehiclesVar.bind(this, user2._doc.vehicles)
+                    }
+                //userVar.bind(this, _vehicle._doc.user)
+                }*/
+                user: userVar.bind(this, _vehicle._doc.user)
+              }))
+
+        }catch(error){
+            throw error
+        }
+    },
+};
