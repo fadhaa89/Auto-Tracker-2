@@ -11,3 +11,4 @@ const resolvers = require("./graphql/resolvers");
 const models = require('./models');
 
 const app = express();
+// get the user info from a JWT
