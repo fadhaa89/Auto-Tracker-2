@@ -14,3 +14,22 @@ const vehiclesVar = async (vehiclesId) => {
     }
     
 }
+
+const userVar = async (userId) => {
+    try{
+        const user2 = await User.findById(userId);
+
+        return {
+            ...user2._doc,
+            vehicles: vehicles.bind(this, user2._doc.vehicles)
+        }
+    }
+    catch {
+        throw err
+    }        
+}
+
+module.exports = {
+    vehiclesVar,
+    userVar
+}
