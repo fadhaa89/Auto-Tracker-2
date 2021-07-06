@@ -28,3 +28,28 @@ const userVar = async (userId) => {
         throw err
     }        
 }
+
+module.exports  = {
+    hello: () => 'Hello world!',
+
+    users: async () => {
+        try{
+            const users = await User.find()
+            return users.map(_user => {
+                return{
+                    ..._user._doc,
+                    //vehicles: vehiclesVar.bind(this, _user._doc.vehicles)
+                    vehicles: async() => {
+                        const vehicles2 = await Vehicle.find({_id: {$in:_user._doc.vehicles}});
+
+                        return vehicles2.map(_vehicle => ({
+                            ..._vehicle._doc,
+                            user: userVar.bind(this, _vehicle._doc.user)
+                        }))
+                    }
+                }
+            })
+        }catch(error){
+            throw error
+        }
+    },
