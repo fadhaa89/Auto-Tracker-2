@@ -38,3 +38,19 @@ const getUser = token => {
     return { models, user };
     } 
 });
+server.applyMiddleware({ app, path: '/api' });
+
+app.get('/', (req, res) => res.send('Hello World'));
+
+const config = require("./config/config.js");
+
+mongoose.connect(config.url,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  })
+  .then(() => app.listen({port}, () => console.log(`Listening on port ${port}!`)))
+  .catch(error => {
+    throw error
+  })
