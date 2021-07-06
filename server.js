@@ -24,7 +24,7 @@ const getUser = token => {
     }
   };
   
-const server = new ApolloServer({ 
+  const server = new ApolloServer({ 
     typeDefs, 
     resolvers,
     context: ({ req }) => {
@@ -33,6 +33,8 @@ const server = new ApolloServer({
     // try to retrieve a user with the token
     const user = getUser(token);
     // for now, let's log the user to the console:
-
+    console.log("here" + user);
+    // add the db models and the user to the context
+    return { models, user };
     } 
 });
