@@ -23,3 +23,12 @@ const getUser = token => {
         }
     }
   };
+  
+const server = new ApolloServer({ 
+    typeDefs, 
+    resolvers,
+    context: ({ req }) => {
+    // get the user token from the headers
+
+    } 
+});
