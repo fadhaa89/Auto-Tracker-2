@@ -12,3 +12,14 @@ const models = require('./models');
 
 const app = express();
 // get the user info from a JWT
+const getUser = token => {
+    if (token) {
+        try {
+            // return the user information from the token
+            return jwt.verify(token, SECRET_KEY);
+        } catch (err) {
+            // if there's a problem with the token, throw an error
+            throw new Error('Session invalid');
+        }
+    }
+  };
