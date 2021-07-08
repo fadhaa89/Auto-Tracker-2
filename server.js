@@ -11,20 +11,21 @@ const resolvers = require("./graphql/resolvers");
 const models = require('./models');
 
 const app = express();
+
 // get the user info from a JWT
 const getUser = token => {
-    if (token) {
-        try {
-            // return the user information from the token
-            return jwt.verify(token, SECRET_KEY);
-        } catch (err) {
-            // if there's a problem with the token, throw an error
-            throw new Error('Session invalid');
-        }
-    }
-  };
-  
-  const server = new ApolloServer({ 
+  if (token) {
+      try {
+          // return the user information from the token
+          return jwt.verify(token, SECRET_KEY);
+      } catch (err) {
+          // if there's a problem with the token, throw an error
+          throw new Error('Session invalid');
+      }
+  }
+};
+
+const server = new ApolloServer({ 
     typeDefs, 
     resolvers,
     context: ({ req }) => {
@@ -38,6 +39,7 @@ const getUser = token => {
     return { models, user };
     } 
 });
+
 server.applyMiddleware({ app, path: '/api' });
 
 app.get('/', (req, res) => res.send('Hello World'));
