@@ -4,7 +4,7 @@
 this is an auto tracking system , where users can register their vehicle , view the list of their vehicle and drivers , also can do sign in and sign out
 
 # Technologies Used
-GraphQL
+GraphQL </br>
 Apollo Server
 Express.JS, NodeJS
 indexDB
