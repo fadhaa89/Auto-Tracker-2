@@ -5,15 +5,15 @@ this is an auto tracking system , where users can register their vehicle , view 
 
 # Technologies Used
 GraphQL </br>
-Apollo Server
-Express.JS, NodeJS
-indexDB
-MongoDB
-Redux
-React
-Stripe
-Materials UI
-Deployment on Heroku
+Apollo Server </br>
+Express.JS, NodeJS </br>
+indexDB </br>
+MongoDB </br>
+Redux </br>
+React </br>
+Stripe </br>
+Materials UI </br>
+Deployment on Heroku </br>
 
 # Authors :
 Group of two project ; 01-Fadhaa Abdullah . 02-Mina Mahmood .
