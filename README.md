@@ -16,7 +16,9 @@ Materials UI </br>
 Deployment on Heroku </br>
 
 # Authors :
-Group of two project ; 01-Fadhaa Abdullah . 02-Mina Mahmood .
+Group of two </br> 
+01-Fadhaa Abdullah. </br> 
+02-Mina Mahmood. </br>
 
 July-2021.
 
