@@ -1,0 +1,11 @@
+ul.vehicle{
+    list-style: none;
+}
+
+.item{
+    font-weight: bold;
+}
+
+.item label{
+    color: #a61fa1
+}
