@@ -138,3 +138,21 @@ export const DELETE_VEHICLE = gql`
             }
         }
 `
+
+export const SUBSCRIBE = gql`
+    mutation Subscription( 
+        $token_id: String!
+        $user: String!
+      ){
+        Subscription(
+            token_id: $token_id
+            user: $user
+            ){
+                _id,
+                subscription{
+                  token_id,
+                  amount
+                }
+            }
+        }
+`
