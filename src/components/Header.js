@@ -14,12 +14,16 @@ function Header() {
 
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
-                <li className="nav-item active">
-                    <a className="nav-link" href="/vehicle">Vehicles</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="/driver">Drivers</a>
-                </li>
+                    <li className="nav-item active">
+                        <a className="nav-link" href="/vehicle">Vehicles</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="/driver">Drivers</a>
+                    </li>
+                    
+                    <li className="nav-item">
+                        <a className="btn btn-outline-success" href="/subscribe">Subscribe</a>
+                    </li>
                 </ul>
 
                 <ul className="navbar-nav ml-auto">{authToken ? (
