@@ -5,13 +5,16 @@ import Header from './Header';
 
 
 function GetDrivers(){
-    const {  data } = useQuery(LOAD_USERS);
+    const {  data, error } = useQuery(LOAD_USERS);
     const [ users, setUsers] = useState([]);
 
     useEffect(() => {
         if(data)
             setUsers(data.users);
-    }, [data]);
+
+        if(error)
+            console.log(error);
+    }, [data, error]);
 
     return (
         <div>
