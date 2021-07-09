@@ -43,3 +43,21 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: link
 });
+
+
+function App() {
+  return <Router>
+    <ApolloProvider client={client}>
+    <Route path="/sign-up"  component={ Register } />
+    <Route path="/login" component={ Login } />
+    <Route path="/vehicle" render = { () => token ? (<GetVeicles/>) : (<Redirect to="/login"/>)} />
+    <Route path="/driver" render = { () => token ? (<GetDrivers/>) : (<Redirect to="/login"/>)} />
+    <Route path="/subscribe" render = { () => token ? (<SubscribeMyWeb/>) : (<Redirect to="/login"/>)} />
+
+    
+    <ToastContainer />
+    </ApolloProvider>
+    </Router>;
+}
+
+export default App;
