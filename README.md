@@ -2,7 +2,8 @@
 Auto-Tracker-2
 
 # description: Auto-Tracker Application
-this is an auto tracking system , where users can register their vehicle , view the list of their vehicle and drivers , also can do sign in and sign out
+this is an auto tracking system , where users can register their vehicle , view the list of their vehicle and drivers , also can do sign in and sign out 
+on other hand you can subscribe by using card after entering cards info (card number ,MM/YY and CVC).
 
 # Technologies Used
 GraphQL </br>
