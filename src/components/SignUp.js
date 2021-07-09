@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import { SIGN_UP } from "../GraphQL/Mutations"
 import { useMutation } from "@apollo/client";
 
 function Register(props) {
+    const history = useHistory();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -10,24 +12,24 @@ function Register(props) {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [address, setAddress] = useState("");
 
-    const [SignUp, {error}] = useMutation(SIGN_UP);
-
-    const addUser = () => {
-        SignUp({
-            variables: {
-                firstName: firstName,
+    const [addUser] = useMutation(SIGN_UP, {
+        variables: {
+            firstName: firstName,
                 lastName: lastName,
                 email: email,
                 password: password,
                 confirmPassword: confirmPassword,
                 address: address
-            },
-        });
-
-        if(error){
-           console.log(error) 
-        }
-    };
+        },
+        onCompleted: ({ SignUp }) => {
+            localStorage.setItem('AUTH_TOKEN', SignUp.token);
+            localStorage.setItem('LOGGED_IN_USER', JSON.stringify(SignUp));
+            history.push('/vehicle');
+        },
+        onError: (error) => {
+            console.log(error)
+         }
+      });
 
   return(
     <div class="container mt-5 body-bg">
