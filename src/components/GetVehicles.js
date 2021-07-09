@@ -12,13 +12,16 @@ const user = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
 function GetVeicles(){
     const history = useHistory();
 
-    const {  data } = useQuery(LOAD_VEHICLS);
+    const {  data, error } = useQuery(LOAD_VEHICLS);
     const [ vehicles, setVehicles] = useState([]);
 
     useEffect(() => {
         if(data)
             setVehicles(data.vehicles);
-    }, [data]);
+
+        if(error)
+            console.log(error);
+    }, [data, error]);
 
     const [model, setModel] = useState("");
     const [year, setYear] = useState("");
@@ -52,29 +55,35 @@ function GetVeicles(){
         onCompleted: ({ createVehicle }) => {
             console.log(createVehicle);
             history.go(0)
-        }
+        },
+        onError: (err) => {
+            console.log(err)
+         }
       });
 
     const [updateVehicle] = useMutation(UPDATE_VEHICLE, {
-    variables: {
-        id: vehicle_id,
-        year: year,
-        model: model,
-        color: color,
-        vin: vin,
-        license_plate: license_plate,
-        toll_tag_number: toll_tag_number,
-        insurance_expire: insurance_expire,
-        registration_expire: registration_expire,
-        purchase_mileage:purchase_mileage,
-        oil_change_mileage: oil_change_mileage,
-        tire_change_mileage: tire_change_mileage,
-        user: user._id
-    },
-    onCompleted: ({ UpdateVehicle }) => {
-        console.log(UpdateVehicle);
-        history.go(0)
-    }
+        variables: {
+            id: vehicle_id,
+            year: year,
+            model: model,
+            color: color,
+            vin: vin,
+            license_plate: license_plate,
+            toll_tag_number: toll_tag_number,
+            insurance_expire: insurance_expire,
+            registration_expire: registration_expire,
+            purchase_mileage:purchase_mileage,
+            oil_change_mileage: oil_change_mileage,
+            tire_change_mileage: tire_change_mileage,
+            user: user._id
+        },
+        onCompleted: ({ UpdateVehicle }) => {
+            console.log(UpdateVehicle);
+            history.go(0)
+        },
+        onError: (_error) => {
+            console.log(_error)
+        }
     });
 
     const [deleteVehicle] = useMutation(DELETE_VEHICLE, {
@@ -85,16 +94,7 @@ function GetVeicles(){
             console.log(DeleteVehicle);
             history.go(0)
         }
-        });
-
-    const confirmDelete = async (options) => {
-        console.log(vehicle_id);
-        if (window.confirm('Are you sure you wish to delete this item?')) {
-            deleteVehicle();
-          return;
-        }
-        console.log("You click No!");
-      };
+    });
 
 
     return (
