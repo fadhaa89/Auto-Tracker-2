@@ -67,6 +67,7 @@ module.exports  = {
             return user2;
         }
     },
+
     vehicles: async () => {
         try{
             const vehicles2 = await Vehicle.find();

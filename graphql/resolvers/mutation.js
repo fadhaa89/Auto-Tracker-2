@@ -2,7 +2,7 @@ const { Vehicle, User } = require("../../models");
 
 const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken');
-const {SECRET_KEY} = require('../../config/config');
+const {SECRET_KEY, stripe} = require('../../config/config');
 
 const vehiclesVar = async (vehiclesId) => {
     try{
@@ -211,6 +211,31 @@ module.exports = {
          
         }else{
             throw new Error('Invalid request submitted');
+        }
+    },
+
+    Subscription: async (_, {token_id, user: userId}) => {
+        try{
+            const user = await User.findById(userId);
+            const customer = await stripe.customers.create({
+                name: user.firstName+' '+user.lastName,
+                email: user.email,
+                source: token_id
+            }) ;
+
+            
+            const stripeInfo = {
+                token_id: customer.id, amount: 500
+            };
+
+            user.subscription.push(stripeInfo);
+            await user.save();
+
+            return {
+                ...user._doc
+            }
+        }catch (error) {
+            throw error
         }
     },
 }

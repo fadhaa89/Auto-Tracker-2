@@ -1,6 +1,10 @@
 const { gql } = require("apollo-server-express");
 
 module.exports = gql`
+    type Subscription {
+        token_id: String!
+        amount: Float!
+    } 
     type User {
         _id: ID!
         firstName: String!
@@ -8,8 +12,9 @@ module.exports = gql`
         email: String!
         password: String!
         address: String!
-        token: String!,
+        token: String!
         vehicles: [Vehicle]
+        subscription: [Subscription]
     }
 
     type Vehicle {
@@ -73,5 +78,10 @@ module.exports = gql`
             user: String!): Vehicle
 
         DeleteVehicle(id: ID!): Vehicle,
+
+        Subscription(
+            token_id: String!
+            user: String!
+        ): User
     }
 `;

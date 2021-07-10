@@ -33,6 +33,11 @@ const userSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'Vehicle',
             required: false,
+        }],
+
+        subscription: [{
+            token_id: String,
+            amount: Number
         }]
     },
     { timestamps:true}
