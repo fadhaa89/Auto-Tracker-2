@@ -37,5 +37,5 @@ https://github.com/fadhaa89/Auto-Tracker-2
 
 ## screenshot
 
-![image](./client/src/assets/images/p.png)
+![image](./assets/images/p.png)
   
